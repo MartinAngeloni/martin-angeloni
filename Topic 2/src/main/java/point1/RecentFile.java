@@ -1,7 +1,5 @@
 package point1;
 
-import point1.IRecentFile;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,20 +8,15 @@ import java.util.List;
  */
 public class RecentFile {
 
-
     private static List<IRecentFile> list;
 
     private RecentFile(){
-
     }
 
-
-    public static List listRecenFile(){
+    public static List listRecentFile(){
         if(list == null) {
             list = new ArrayList<IRecentFile>();
         }
         return list;
     }
-
-
 }

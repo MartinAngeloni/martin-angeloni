@@ -12,12 +12,18 @@ public class File implements IRecentFile {
     }
 
     public boolean open() {
-        if(!RecentFile.listRecenFile().contains(this)
-                && RecentFile.listRecenFile().size() < 5) {
-            RecentFile.listRecenFile().add(this);
-        }else if(RecentFile.listRecenFile().size() == 5){
-            RecentFile.listRecenFile().remove(0);
-            RecentFile.listRecenFile().add(this);
+        if(!RecentFile.listRecentFile().contains(this)
+                && RecentFile.listRecentFile().size() < 5) {
+            RecentFile.listRecentFile().add(this);
+        }
+        if(RecentFile.listRecentFile().contains(this)
+                && RecentFile.listRecentFile().size() < 5){
+            RecentFile.listRecentFile().remove(this);
+            RecentFile.listRecentFile().add(this);
+        }
+        if(RecentFile.listRecentFile().size() == 5 && !RecentFile.listRecentFile().contains(this)){
+            RecentFile.listRecentFile().remove(0);
+            RecentFile.listRecentFile().add(this);
         }
         return true;
     }

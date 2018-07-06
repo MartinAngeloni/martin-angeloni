@@ -2,12 +2,11 @@ import org.junit.Before;
 import org.junit.Test;
 import point1.File;
 import point1.RecentFile;
+import static org.junit.Assert.*;
 
 /**
  * Created by martin on 30/6/2018.
  */
-import static org.junit.Assert.*;
-
 public class TDDExercise1 {
 
     private File file;
@@ -31,46 +30,31 @@ public class TDDExercise1 {
     public void firstTDDExercise1(){
 
         //empty for the first time
-        assertTrue("Verify if the list is empty", RecentFile.listRecenFile().isEmpty());
+        assertTrue("Verify if the list is empty", RecentFile.listRecentFile().isEmpty());
 
         //open = added
         file.open();
-        assertEquals("The file is already added", 1, RecentFile.listRecenFile().size());
+        assertEquals("The file is already added", 1, RecentFile.listRecentFile().size());
 
-        //no duplicated file
+        //no duplicated file, bumped to top
         file2.open();
         file.close();
         file.open();
-        assertEquals("File 1 is the first", file, RecentFile.listRecenFile().get(0));
-        assertEquals("File 2 is the last", file2, RecentFile.listRecenFile().get(1));
-        assertEquals("No duplicate items", 2, RecentFile.listRecenFile().size());
+        assertEquals("File 2 is the first", file2, RecentFile.listRecentFile().get(0));
+        assertEquals("File 1 is the last", file, RecentFile.listRecentFile().get(1));
+        assertEquals("No duplicate items", 2, RecentFile.listRecentFile().size());
 
-        //list full == oldest item removed
+        //list full == oldest item removed (file2)
         file3.open();
+        assertEquals(file3, RecentFile.listRecentFile().get(2));
         file4.open();
+        assertEquals(file4, RecentFile.listRecentFile().get(3));
         file5.open();
+        assertEquals(file5, RecentFile.listRecentFile().get(4));
         file6.open();
-        assertEquals("Length of the list is 5", 5, RecentFile.listRecenFile().size());
-        assertEquals("The oldest file was removed", true, !RecentFile.listRecenFile().contains(file));
-        assertEquals("The file 2 is now the first in the list", file2, RecentFile.listRecenFile().get(0));
-        assertEquals("The file 6 is now the last in the list", file6, RecentFile.listRecenFile().get(4));
+        assertEquals("Length of the list is 5", 5, RecentFile.listRecentFile().size());
+        assertEquals("The oldest file was removed", true, !RecentFile.listRecentFile().contains(file2));
+        assertEquals("The file 6 is now the last in the list", file6, RecentFile.listRecentFile().get(4));
+        assertEquals("The file 2 is now the first in the list", file, RecentFile.listRecentFile().get(0));
     }
-
-    @Test
-    public void secondTDDExercise2(){
-        //crear 1 blog
-        //guardarlo
-        //verificar que exista
-
-        //borrarlo
-        //vericiar que fue borrado
-
-        //crear 10 blogs
-        //mostrar 5 recientes
-
-    }
-
-
-
-
 }
