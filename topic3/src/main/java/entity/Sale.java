@@ -1,18 +1,42 @@
 package entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by martin on 4/7/2018.
+ * Created by martin on 6/7/2018.
  */
 public class Sale {
 
-    private List product;
+    private int id;
+    private Cart cart;
+    private int totalPrice;
 
-    public Sale(){
-        this.product = new ArrayList<Product>();
+    public Sale(int id, int totalPrice){
+        this.id = id;
+        this.totalPrice = totalPrice;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }
