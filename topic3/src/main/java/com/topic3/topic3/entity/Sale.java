@@ -1,6 +1,4 @@
-package entity;
-
-import java.util.List;
+package com.topic3.topic3.entity;
 
 /**
  * Created by martin on 6/7/2018.
@@ -11,9 +9,10 @@ public class Sale {
     private Cart cart;
     private int totalPrice;
 
-    public Sale(int id, int totalPrice){
+    public Sale(){}
+
+    public Sale(int id){
         this.id = id;
-        this.totalPrice = totalPrice;
     }
 
     public int getId() {

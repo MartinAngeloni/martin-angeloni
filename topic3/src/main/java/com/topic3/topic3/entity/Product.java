@@ -1,4 +1,6 @@
-package entity;
+package com.topic3.topic3.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Created by martin on 6/7/2018.
@@ -10,6 +12,8 @@ public class Product {
     private String category;
     private Sale sale;
     private int price;
+
+    public Product(){}
 
     public Product(int id, String name, String category, int price) {
         this.id = id;
@@ -57,5 +61,15 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+
+        Product product = (Product) o;
+
+        return id == product.id;
     }
 }
