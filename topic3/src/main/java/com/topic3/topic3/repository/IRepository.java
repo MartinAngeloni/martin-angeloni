@@ -1,11 +1,11 @@
 package com.topic3.topic3.repository;
 
-import com.topic3.topic3.entity.Cart;
-
 import java.util.List;
 
 /**
+ * Generic to implement in all repositories
  * Created by martin on 6/7/2018.
+ * @author angelonimartin90@gmail.com
  */
 public interface IRepository<T> {
 

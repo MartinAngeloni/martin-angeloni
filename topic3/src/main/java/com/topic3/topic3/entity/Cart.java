@@ -1,14 +1,13 @@
 package com.topic3.topic3.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.topic3.topic3.service.Carry;
-import com.topic3.topic3.service.Saleable;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by martin on 6/7/2018.
+ * Create a cart with id and his products and sales
+ * @author angelonimartin90@gmail.com
  */
 public class Cart implements Carry{
 
@@ -52,6 +51,11 @@ public class Cart implements Carry{
         this.sales = sales;
     }
 
+    /**
+     * To delete the same object from a repository
+     * @param o - object to compare
+     * @return return if the object is equals or no
+     */
     @Override
     public boolean equals(Object o) {
         if(o instanceof Cart && this.getId() == ((Cart) o).getId()){
@@ -60,6 +64,9 @@ public class Cart implements Carry{
         return false;
     }
 
+    /**
+     * @return the sum of the price of all products added in cart
+     */
     public int getTotalPrice() {
         int totalPrice = 0;
         for (Product p : products) {
@@ -68,11 +75,19 @@ public class Cart implements Carry{
         return totalPrice;
     }
 
+    /**
+     * Add one product to cart
+     * @param product - a product object
+     */
     @Override
     public void addToCart(Product product) {
         products.add(product);
     }
 
+    /**
+     * The product that gonna be removed
+     * @param product - a product object
+     */
     @Override
     public void removeToCart(Product product) {
         products.remove(product);

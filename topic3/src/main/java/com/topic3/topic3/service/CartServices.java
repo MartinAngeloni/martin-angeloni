@@ -1,7 +1,6 @@
 package com.topic3.topic3.service;
 
 import com.topic3.topic3.entity.Cart;
-import com.topic3.topic3.entity.Product;
 import com.topic3.topic3.entity.Sale;
 import com.topic3.topic3.repository.SaleRepository;
 import org.springframework.stereotype.Service;

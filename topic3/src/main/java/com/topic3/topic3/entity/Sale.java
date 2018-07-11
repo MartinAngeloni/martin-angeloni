@@ -1,7 +1,9 @@
 package com.topic3.topic3.entity;
 
 /**
+ * Create a sale with his total price
  * Created by martin on 6/7/2018.
+ * @author angelonimartin90@gmail.com
  */
 public class Sale {
 

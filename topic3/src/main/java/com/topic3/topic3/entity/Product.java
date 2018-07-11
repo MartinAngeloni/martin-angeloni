@@ -1,9 +1,9 @@
 package com.topic3.topic3.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 /**
+ * Create product with a ID, Category, an a price
  * Created by martin on 6/7/2018.
+ * @author angelonimartin90@gmail.com
  */
 public class Product {
 
@@ -63,6 +63,11 @@ public class Product {
         this.price = price;
     }
 
+    /**
+     * To delete the same object from a repository
+     * @param o
+     * @return - if is a equal object or no
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

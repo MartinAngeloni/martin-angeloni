@@ -25,8 +25,8 @@ public class CartTest {
     @Before
     public void loadData(){
         burger = new Product(1, "Burger", "Food", 50);
-        wine = new Product(1, "Wine", "Drink", 200);
-        wire = new Product(1, "HDwire", "Electronics", 450);
+        wine = new Product(2, "Wine", "Drink", 200);
+        wire = new Product(3, "HDwire", "Electronics", 450);
 
         productRepository.create(burger);
         productRepository.create(wine);
@@ -57,8 +57,23 @@ public class CartTest {
         }
 
         Assert.assertEquals(totalPrice, cartToTest.getTotalPrice());
-
     }
 
+    @Test
+    public void removeToCart(){
+        cart.addToCart(burger);
+        cart.addToCart(wine);
+        cart.addToCart(wire);
+        cartRepository.update(cart);
+        Cart cartToTest = cartRepository.get(1);
+
+        Assert.assertTrue(cartToTest.getProducts().contains(burger));
+        Assert.assertTrue(cartToTest.getProducts().contains(wine));
+        Assert.assertTrue(cartToTest.getProducts().contains(wire));
+
+        cartToTest.removeToCart(burger);
+        Assert.assertEquals(2, cart.getProducts().size());
+        Assert.assertFalse(cartToTest.getProducts().contains(burger));
+    }
 
 }

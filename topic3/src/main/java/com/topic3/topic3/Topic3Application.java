@@ -8,6 +8,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author angelonimartin90@gmail.com
+ */
 @SpringBootApplication
 public class Topic3Application implements CommandLineRunner{
 
@@ -18,6 +21,11 @@ public class Topic3Application implements CommandLineRunner{
 	ProductRepository productRepository = ProductRepository.getProducts();
 	CartRepository cartRepository = CartRepository.getCarts();
 
+	/**
+	 * To add default products to cart and save in the repository
+	 * @param strings
+	 * @throws Exception
+	 */
 	@Override
 	public void run(String... strings) throws Exception {
 
