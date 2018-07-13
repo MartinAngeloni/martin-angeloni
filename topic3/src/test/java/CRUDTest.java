@@ -1,6 +1,6 @@
 import com.topic3.topic3.entity.Cart;
 import com.topic3.topic3.repository.CartRepository;
-import com.topic3.topic3.repository.IRepository;
+import com.topic3.topic3.repository.Repository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class CRUDTest {
 
-    private IRepository cartRepository = CartRepository.getCarts();
+    private Repository cartRepository = CartRepository.getCarts();
     Cart cart;
 
 

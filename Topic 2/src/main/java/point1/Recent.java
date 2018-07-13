@@ -3,7 +3,7 @@ package point1;
 /**
  * Created by martin on 30/6/2018.
  */
-public interface IRecentFile {
+public interface Recent {
 
     public boolean open();
 

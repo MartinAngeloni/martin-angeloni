@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @author angelonimartin90@gmail.com
  */
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/carts")
 public class CartController {
 
     CartRepository cartRepository = CartRepository.getCarts();
@@ -24,7 +24,6 @@ public class CartController {
      * @return - a Cart created object
      */
     @PostMapping("/create")
-    @ExceptionHandler(Exception.class)
     public ResponseEntity<Cart> createCart(@RequestBody Cart cart){
         Cart cartCreated = cartRepository.create(cart);
         return ResponseEntity.ok(cartCreated);
@@ -32,13 +31,12 @@ public class CartController {
 
     /**
      * Method to get a cart from his repository
-     * @param id - id of the cart to search
+     * @param cartId - id of the cart to search
      * @return - a Json Cart Object
      */
-    @GetMapping("/get/{id}")
-    @ExceptionHandler(ClassNotFoundException.class)
-    public ResponseEntity<Cart> getCart(@PathVariable int id){
-        return ResponseEntity.ok(cartRepository.get(id));
+    @GetMapping("/{cartId}")
+    public ResponseEntity<Cart> getCart(@PathVariable int cartId){
+        return ResponseEntity.ok(cartRepository.get(cartId));
     }
 
     /**
@@ -62,12 +60,12 @@ public class CartController {
     /**
      * Method to add product a particular cart
      * @param product - a Json Product Object
-     * @param id - id of the Cart
+     * @param cartId - id of the Cart
      */
-    @PutMapping("/addtocart/{id}")
+    @PutMapping("/add/{cartId}")
     public void addToCart(@RequestBody Product product,
-                          @PathVariable int id){
-        Cart cart = cartRepository.get(id);
+                          @PathVariable int cartId){
+        Cart cart = cartRepository.get(cartId);
         cart.addToCart(product);
         cartRepository.update(cart);
     }
@@ -75,12 +73,12 @@ public class CartController {
     /**
      * Method to remove a Product of a particular Cart
      * @param product - a Json Product Object
-     * @param id - id of the Cart
+     * @param cartId - id of the Cart
      */
-    @PutMapping("/removetocart/{id}")
+    @PutMapping("/remove/{cartId}")
     public void removeToCart(@RequestBody Product product,
-                             @PathVariable int id){
-        Cart cart = cartRepository.get(id);
+                             @PathVariable int cartId){
+        Cart cart = cartRepository.get(cartId);
         cart.removeToCart(product);
         cartRepository.update(cart);
     }

@@ -8,14 +8,14 @@ import java.util.List;
  */
 public class RecentFile {
 
-    private static List<IRecentFile> list;
+    private static List<Recent> list;
 
     private RecentFile(){
     }
 
     public static List listRecentFile(){
         if(list == null) {
-            list = new ArrayList<IRecentFile>();
+            list = new ArrayList<Recent>();
         }
         return list;
     }

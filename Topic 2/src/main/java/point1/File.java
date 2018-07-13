@@ -3,7 +3,7 @@ package point1;
 /**
  * Created by martin on 30/6/2018.
  */
-public class File implements IRecentFile {
+public class File implements Recent {
 
     private String name;
 

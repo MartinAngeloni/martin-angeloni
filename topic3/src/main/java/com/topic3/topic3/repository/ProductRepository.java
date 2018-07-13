@@ -10,7 +10,7 @@ import java.util.List;
  * Created by martin on 9/7/2018.
  * @author angelonimartin90@gmail.com
  */
-public class ProductRepository implements IRepository<Product>{
+public class ProductRepository implements Repository<Product> {
 
     private final List<Product> products = new ArrayList<Product>();
 

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by martin on 6/7/2018.
  * @author angelonimartin90@gmail.com
  */
-public interface IRepository<T> {
+public interface Repository<T> {
 
     public T create(T t);
     public T get(int id);
