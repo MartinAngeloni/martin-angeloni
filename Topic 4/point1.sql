@@ -1,9 +1,10 @@
 use high_school;
+
 create table student (
 registration_id int primary key not null unique,
 first_name varchar(20),
 last_name varchar(20),
-birthday date); 
+birthday date);
 
 create table teacher (
 teacher_id int primary key not null unique,
@@ -12,7 +13,7 @@ last_name varchar(20),
 birthday date);
 
 create table course (
-course_id int primary key not null unique,
+course_id int primary key not null unique (AUTO_INCREMENT),
 name varchar(20),
 asigned_teacher int,
 hours_by_week int,
@@ -21,7 +22,7 @@ schedule_time int);
 create table assist (
 id int primary key not null,
 student_id int not null unique,
-course_id int not null unique,
+course_id int not null,
 partial1 int,
 partial2 int,
 partial3 int,
