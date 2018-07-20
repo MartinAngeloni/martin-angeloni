@@ -1,4 +1,4 @@
-package point2;
+package point2.entity;
 
 import java.util.List;
 

@@ -1,4 +1,6 @@
-package point2;
+package point2.repository;
+
+import point2.entity.Blog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 public class BlogRepository {
 
     private static Integer id = 0;
-    private List<Blog> blogs;
+    private static List<Blog> blogs;
 
     private static BlogRepository instance;
 
@@ -29,6 +31,10 @@ public class BlogRepository {
         blog.setId(id);
         blogs.add(blog);
         return blog;
+    }
+
+    public List<Blog> getBlogs(){
+        return blogs;
     }
 
     public List<Blog> get5Recent(){

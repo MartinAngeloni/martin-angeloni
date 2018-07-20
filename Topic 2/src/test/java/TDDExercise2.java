@@ -1,14 +1,16 @@
 import org.junit.Before;
 import org.junit.Test;
-import point2.Blog;
-import point2.BlogRepository;
-import point2.User;
+import point2.entity.Blog;
+import point2.repository.BlogRepository;
+import point2.entity.Comment;
+import point2.entity.User;
+import point2.repository.CommentRepository;
+import point2.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -18,10 +20,11 @@ import static org.mockito.Mockito.when;
 public class TDDExercise2 {
 
     private User userMock;
-
-    private User creatorMock;
+    private Comment commentMock;
 
     private BlogRepository blogRepository;
+    private UserRepository userRepositoryMock;
+    private CommentRepository commentRepositoryMock;
 
     private Blog blogMock1;
     private Blog blogMock2;
@@ -29,17 +32,16 @@ public class TDDExercise2 {
     private Blog blogMock4;
     private Blog blogMock5;
     private Blog blogMock6;
-    private Blog blogMock7;
-    private Blog blogMock8;
-    private Blog blogMock9;
-    private Blog blogMock10;
 
     private List<Blog> blogList;
     private List<Blog> fiveRecent;
+    private List<Comment> fiveRecentCommentFile;
 
     @Before
     public void setUp(){
         blogRepository = mock(BlogRepository.class);
+        userRepositoryMock = mock(UserRepository.class);
+        commentRepositoryMock = mock(CommentRepository.class);
 
         blogMock1 = mock(Blog.class);
         blogMock2 = mock(Blog.class);
@@ -47,13 +49,13 @@ public class TDDExercise2 {
         blogMock4 = mock(Blog.class);
         blogMock5 = mock(Blog.class);
         blogMock6 = mock(Blog.class);
-        blogMock7 = mock(Blog.class);
-        blogMock8 = mock(Blog.class);
-        blogMock9 = mock(Blog.class);
-        blogMock10 = mock(Blog.class);
 
         blogList = mock(ArrayList.class);
         fiveRecent = mock(ArrayList.class);
+        fiveRecentCommentFile = mock(ArrayList.class);
+
+        userMock = mock(User.class);
+        commentMock = mock(Comment.class);
     }
 
     @Test
@@ -72,7 +74,7 @@ public class TDDExercise2 {
         when(blogList.size()).thenReturn(1);
         assertEquals(1, blogList.size());
 
-        //create 10 entry
+        //create 6 entry
         when(blogRepository.add(blogMock2)).thenReturn(blogMock2);
         Blog blogFound2 = blogRepository.add(blogMock2);
         assertEquals(blogMock2, blogFound2);
@@ -88,23 +90,11 @@ public class TDDExercise2 {
         when(blogRepository.add(blogMock6)).thenReturn(blogMock6);
         Blog blogFound6 = blogRepository.add(blogMock6);
         assertEquals(blogMock6, blogFound6);
-        when(blogRepository.add(blogMock7)).thenReturn(blogMock7);
-        Blog blogFound7 = blogRepository.add(blogMock7);
-        assertEquals(blogMock7, blogFound7);
-        when(blogRepository.add(blogMock8)).thenReturn(blogMock8);
-        Blog blogFound8 = blogRepository.add(blogMock8);
-        assertEquals(blogMock8, blogFound8);
-        when(blogRepository.add(blogMock9)).thenReturn(blogMock9);
-        Blog blogFound9 = blogRepository.add(blogMock9);
-        assertEquals(blogMock9, blogFound9);
-        when(blogRepository.add(blogMock10)).thenReturn(blogMock10);
-        Blog blogFound10 = blogRepository.add(blogMock10);
-        assertEquals(blogMock10, blogFound10);
 
         when(blogRepository.findAll().size()).thenReturn(10);
         assertEquals("10 entry was created",10, blogRepository.findAll().size());
 
-        //return 5 most recent file
+        //return 5 most recent entries
         when(blogRepository.get5Recent()).thenReturn(fiveRecent);
         fiveRecent = blogRepository.get5Recent();
         assertEquals("The list return 5 files",fiveRecent, blogRepository.get5Recent());
@@ -117,23 +107,22 @@ public class TDDExercise2 {
         Blog blog6 = blogMock6;
         assertEquals(blog6, blogRepository.get5Recent().get(5));
 
-        when(blogRepository.get5Recent().get(6)).thenReturn(blogMock7);
-        Blog blog7 = blogMock7;
-        assertEquals(blog7, blogRepository.get5Recent().get(6));
+        //post new Comment
+        when(commentRepositoryMock.addComment(commentMock)).thenReturn(commentMock);
+        Comment comment = commentRepositoryMock.addComment(commentMock);
+        assertEquals(commentRepositoryMock.addComment(commentMock), commentMock);
 
-        when(blogRepository.get5Recent().get(7)).thenReturn(blogMock8);
-        Blog blog8 = blogMock8;
-        assertEquals(blog8, blogRepository.get5Recent().get(7));
+        //delete a comment
+        when(commentRepositoryMock.deleteComment(commentMock)).thenReturn(true);
+        assertEquals("The comment was deleted",true, commentRepositoryMock.deleteComment(commentMock));
 
-        when(blogRepository.get5Recent().get(8)).thenReturn(blogMock9);
-        Blog blog9 = blogMock9;
-        assertEquals(blog9, blogRepository.get5Recent().get(8));
+        //get 5 most recent entries
+        when(commentRepositoryMock.get5RecentEntries()).thenReturn(fiveRecentCommentFile);
+        fiveRecentCommentFile = commentRepositoryMock.get5RecentEntries();
+        assertEquals("Get a list of 5 recent file",fiveRecentCommentFile, commentRepositoryMock.get5RecentEntries());
 
-        when(blogRepository.get5Recent().get(9)).thenReturn(blogMock10);
-        Blog blog10 = blogMock10;
-        assertEquals(blog10, blogRepository.get5Recent().get(9));
-
-
+        when(commentRepositoryMock.get5RecentEntries().size()).thenReturn(5);
+        assertEquals("The list has 5 objects",5, commentRepositoryMock.get5RecentEntries().size());
 
     }
 }

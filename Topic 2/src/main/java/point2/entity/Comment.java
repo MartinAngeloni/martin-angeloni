@@ -1,14 +1,40 @@
-package point2;
+package point2.entity;
 
 /**
  * Created by martin on 30/6/2018.
  */
 public class Comment {
 
+    private Integer id;
     private String massage;
+    private Blog blog;
 
     public Comment(String massage){
         this.massage = massage;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getMassage() {
+        return massage;
+    }
+
+    public void setMassage(String massage) {
+        this.massage = massage;
+    }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
     }
 
     @Override
